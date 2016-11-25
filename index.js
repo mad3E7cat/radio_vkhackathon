@@ -1,17 +1,12 @@
 var express = require('express');
-var app = express(); // express object
+var app = express();
 
-app.use(express.static(__dirname + '/static')); // allows access to any file in 'public'
-app.set('port', (process.env.PORT || 5000)); // set port to 5000
+app.use(express.static(__dirname + '/static')) // allows access to any file in 'public'
+app.set('port', (process.env.PORT || 5000)) // set port to 5000
 
-//views us directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-app.get('/', function(request, response)
-{
+app.get('/', function(request, response){
 	console.log("REQUESTED: " + request)
-	response.sendFile(__dirname + '/index.html');
+	response.sendFile(__dirname + '/index.html')
 });
 
 app.get('/main.js', function(request, response){
@@ -22,23 +17,12 @@ app.get('/main.css', function(request, response){
 	response.sendFile(__dirname + '/static/css/main.b52aa9ee.css');
 });
 
-
-app.post('/DfSgTr', function(request, response){ // if POST comes to this unuque url, we answer with "1db0c94a"
+// if POST comes to this unuque url, we answer with "1db0c94a"
+app.post('/DfSgTr', function(request, response){ 
 	console.log("REQUESTED: " + request)
 	response.end('e6dda052');
 });
 
-// app.post('/', function(request, response){
-//     var req = JSON.parse(request.body);
-//     if(req.type == "confirmation"){
-//         response.send('1db0c94a');
-//     }
-// });
-
-
-
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-
-
