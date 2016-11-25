@@ -10,10 +10,18 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response)
 {
+	console.log("REQUESTED: " + request)
 	response.sendFile(__dirname + '/index.html');
-	response.sendFile(__dirname + '/static/main.b1476538.js');
+});
+
+app.get('/main.js', function(request, response){
+	response.sendFile(__dirname + '/static/js/main.b1476538.js');
+});
+
+app.get('/main.css', function(request, response){
 	response.sendFile(__dirname + '/static/css/main.b52aa9ee.css');
 });
+
 
 app.post('/DfSgTr', function(request, response){ // if POST comes to this unuque url, we answer with "1db0c94a"
 	console.log("REQUESTED: " + request)
