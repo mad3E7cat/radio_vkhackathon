@@ -13,10 +13,10 @@ app.get('/', function(request, response)
 	response.sendFile(__dirname + '/index.html');
 	response.sendFile(__dirname + '/static/main.b1476538.js');
 	response.sendFile(__dirname + '/static/css/main.b52aa9ee.css');
-	console.log("Files should have been included...epta...");
 });
 
 app.post('/DfSgTr', function(request, response){ // if POST comes to this unuque url, we answer with "1db0c94a"
+	console.log("REQUESTED: " + request)
 	response.end('e6dda052');
 });
 
