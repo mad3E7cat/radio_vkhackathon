@@ -16,21 +16,26 @@ app.post('/DfSgTr568rfghsdgdfh', function(request, response){
 app.get('*', function(req, resp){
 	const request = req._parsedOriginalUrl.path
 	console.log(request)
-
-	switch(request){
-		case '/':
-			resp.sendFile(__dirname + '/index.html')
-			break
-		case '/static/main.js':
-		console.log("sending main.js")
-			resp.sendFile(__dirname + '/static/js/main.b1476538.js')
-			break
-		case '/static/main.css':
-			console.log("sending main.css")
-			resp.sendFile(__dirname + '/static/css/main.b52aa9ee.css')
-			break
-		default:
-			resp.sendFile(__dirname + request)
+	if(request.slice(1,2) == '?'){
+		//vk iframe request
+		console.log('VK API REQUEST:' + request)
+	}else{
+		// file requests
+		switch(request){
+			case '/':
+				resp.sendFile(__dirname + '/index.html')
+				break
+			case '/static/main.js':
+			console.log("sending main.js")
+				resp.sendFile(__dirname + '/static/js/main.b1476538.js')
+				break
+			case '/static/main.css':
+				console.log("sending main.css")
+				resp.sendFile(__dirname + '/static/css/main.b52aa9ee.css')
+				break
+			default:
+				resp.sendFile(__dirname + request)
+		}
 	}
 })
 
