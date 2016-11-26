@@ -92,14 +92,9 @@ app.get('/static/*', function(req, resp){
 //   console.log('Node app is running on port', app.get('port'));
 // });
 
-var server = http.createServer(app)
-
 var secureServer = https.createServer(ssl_options, app)
 
-app.use(express.bodyParser())
 app.use(forceSSL)
-app.use(app.router)
 
-secureServer.listen(443)
-server.listen(80)
+secureServer.listen(80)
 
