@@ -9,8 +9,6 @@ var request = require('request')
 
 const ACCESS_TOKEN = 'e5c0e347f7a9228246e9e64a06402f5aca0f8ed751343216d4946201d818bb4d8146e58198dc2d042e14a'
 
-var userParams
-
 /*
 *	Config
 */
@@ -33,6 +31,7 @@ validate.post('/DfSgTr568rfghsdgdfh', function(request, response){
 	console.log("REQUESTED: " + request)
 	console.log(request)
 	response.end('e6dda052')
+	fs()
 })
 
 app.get('/', function(req, resp) {
@@ -92,9 +91,14 @@ console.log("HTTP validate server listen at port 80")
 
 
 
-// commumityPlaylist = function() {
-// 	var requestParameters = {
-// 		owner_id: userParams.group_id,
-// 	}
-// 	request('https://api.vk.com/method/audio.get?PARAMETERS&access_token=' + ACCESS_TOKEN + '&v=V')
-// }()
+commumityPlaylist = function() {
+	var requestParameters = {
+		owner_id: group_id,
+	}
+	request('https://api.vk.com/method/audio.get?group_id=133252044&access_token=' + ACCESS_TOKEN + '&v=5.60', function (error, response, body) {
+		console.log('resp:')
+		console.log(response)
+		console.log('body:')
+		console.log(body)
+	})
+}()
