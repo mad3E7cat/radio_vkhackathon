@@ -15,8 +15,8 @@ var userParams
 
 
 var ssl_options = {
-	key: fs.readFileSync('/etc/letsencrypt/live/privkey.pem'),
-	cert: fs.readFileSync('/etc/letsencrypt/live/fullchain.pem'),
+	key: fs.readFileSync('/etc/letsencrypt/live/team3.vkhackathon.ru/privkey.pem'),
+	cert: fs.readFileSync('/etc/letsencrypt/live/team3.vkhackathon.ru/fullchain.pem'),
 }
 
 app.use(express.static(__dirname + '/static')) // allows access to any file in 'public'
@@ -79,7 +79,7 @@ app.get('/static/*', function(req, resp){
 *	Listen
 */
 
-var server = https.createServer(ssl_options, app).listen(80, 'team3.vkhackhathon.ru')
+var server = https.createServer(ssl_options, app).listen(80)
 console.log("HTTPS listen at port 80")
 
 /*
