@@ -2,8 +2,8 @@ var express = require('express')
 var forceSSL = require('express-force-ssl')
 var fs = require('fs')
 var app = express()
-// var validate = express()
-// var http = require('http')
+var validate = express()
+var http = require('http')
 var https = require('https')
 var request = require('request')
 
@@ -84,8 +84,8 @@ app.get('/static/*', function(req, resp){
 var server = https.createServer(ssl_options, app).listen(443)
 console.log("HTTPS listen at port 443")
 
-// var validateServer = validate.listen(80)
-// console.log("HTTP validate server listen at port 80")
+var validateServer = validate.listen(80)
+console.log("HTTP validate server listen at port 80")
 /*
 *	Processing
 */
