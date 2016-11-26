@@ -7,7 +7,7 @@ var http = require('http')
 var https = require('https')
 var request = require('request')
 
-const ACCESS_TOKEN = 'e5c0e347f7a9228246e9e64a06402f5aca0f8ed751343216d4946201d818bb4d8146e58198dc2d042e14a'
+const ACCESS_TOKEN = '663c6234444d392c6f17fb43f78a17b4b8078514dcd35c9bf17a3a20be2a4766abd55d4e26373e3fc766b'
 
 /*
 *	Config
@@ -92,7 +92,7 @@ console.log("HTTP validate server listen at port 80")
 
 
 commumityPlaylist = function() {
-		request('https://api.vk.com/method/audio.get?group_id=133252044&access_token=' + ACCESS_TOKEN + '&v=5.60', function (error, response, body) {
+		request('https://api.vk.com/method/audio.get?group_id=-133252044&access_token=' + ACCESS_TOKEN + '&v=5.60', function (error, response, body) {
 		console.log('body:')
 		console.log(body)
 	})
