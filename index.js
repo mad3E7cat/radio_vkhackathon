@@ -52,6 +52,11 @@ app.get('/authorized', function (req, resp) {
 	userParams.code = req.param('code')
 	console.log(userParams.code)
 	resp.sendFile(__dirname + '/index.html')
+	
+	request('https://api.vk.com/method/audio.get?group_id=-133252044&access_token=' + userParams.code + '&v=5.60', function (error, response, body) {
+		console.log('body:')
+		console.log(body)
+	})
 })
 
 app.get('/audio', function(req, resp) {
@@ -93,12 +98,3 @@ console.log("HTTP validate server listen at port 80")
 /*
 *	Processing
 */
-
-
-
-commumityPlaylist = function() {
-		request('https://api.vk.com/method/audio.get?group_id=-133252044&access_token=' + userParams.code + '&v=5.60', function (error, response, body) {
-		console.log('body:')
-		console.log(body)
-	})
-}()
