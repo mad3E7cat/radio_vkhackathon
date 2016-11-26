@@ -92,12 +92,7 @@ console.log("HTTP validate server listen at port 80")
 
 
 commumityPlaylist = function() {
-	var requestParameters = {
-		owner_id: group_id,
-	}
-	request('https://api.vk.com/method/audio.get?group_id=133252044&access_token=' + ACCESS_TOKEN + '&v=5.60', function (error, response, body) {
-		console.log('resp:')
-		console.log(response)
+		request('https://api.vk.com/method/audio.get?group_id=133252044&access_token=' + ACCESS_TOKEN + '&v=5.60', function (error, response, body) {
 		console.log('body:')
 		console.log(body)
 	})
