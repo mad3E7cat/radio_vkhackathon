@@ -8,6 +8,7 @@ var https = require('https')
 var request = require('request')
 
 const ACCESS_TOKEN = '663c6234444d392c6f17fb43f78a17b4b8078514dcd35c9bf17a3a20be2a4766abd55d4e26373e3fc766b'
+var userParams
 
 /*
 *	Config
@@ -44,14 +45,18 @@ app.get('/', function(req, resp) {
 	}
 
 	console.dir(userParams)
+	resp.redirect('https://oauth.vk.com/authorize?client_id=133252044&display=popup&redirect_uri=https://77.244.216.252/authorized&scope=8&response_type=code&v=5.60')
+})
 
+app.get('/authorized', function (req, resp) {
+	userParams.code = req.param('code')
+	console.log(userParams.code)
 	resp.sendFile(__dirname + '/index.html')
 })
 
 app.get('/audio', function(req, resp) {
 	console.log("audio")
 })
-
 
 app.get('/playlist', function(req, resp) {
 	console.log("playlist")
@@ -92,7 +97,7 @@ console.log("HTTP validate server listen at port 80")
 
 
 commumityPlaylist = function() {
-		request('https://api.vk.com/method/audio.get?group_id=-133252044&access_token=' + ACCESS_TOKEN + '&v=5.60', function (error, response, body) {
+		request('https://api.vk.com/method/audio.get?group_id=-133252044&access_token=' + userParams.code + '&v=5.60', function (error, response, body) {
 		console.log('body:')
 		console.log(body)
 	})
