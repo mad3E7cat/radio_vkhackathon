@@ -27,7 +27,7 @@ app.get('*', function(req, resp){
 				break
 			case '/static/main.js':
 			console.log("sending main.js")
-				resp.sendFile(__dirname + '/static/js/main.b1476538.js')
+				resp.sendFile(__dirname + '/static/js/main.5731039b.js')
 				break
 			case '/static/main.css':
 				console.log("sending main.css")
