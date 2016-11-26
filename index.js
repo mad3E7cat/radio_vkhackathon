@@ -25,11 +25,10 @@ app.get('*', function(req, resp){
 		default:
 			resp.sendFile(__dirname + request)
 	}
-
 })
 
 // if POST comes to this unuque url, we answer with "1db0c94a"
-app.post('/DfSgTr', function(request, response){ 
+app.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
 	console.log("REQUESTED: " + request)
 	response.end('e6dda052');
 });
@@ -37,3 +36,5 @@ app.post('/DfSgTr', function(request, response){
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+
