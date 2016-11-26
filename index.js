@@ -29,7 +29,7 @@ app.set('port', (process.env.PORT || 443)) // set port to 5000
 *	Incoming request
 */
 
-app.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
+validate.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
 	console.log("REQUESTED: " + request)
 	console.log(request)
 	response.end('e6dda052')
@@ -37,7 +37,7 @@ app.post('/DfSgTr568rfghsdgdfh', function(request, response){
 
 app.get('/', function(req, resp) {
 	userParams = {
-		api_url: req.paragitm('api_url'),
+		api_url: req.param('api_url'),
 		api_settings: req.param('api_settings'),
 		viewer_id: req.param('viewer_id'),
 		group_id: req.param('group_id'),
