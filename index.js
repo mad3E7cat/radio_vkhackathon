@@ -1,35 +1,48 @@
-var express = require('express');
-var forceSSL = require('express-force-ssl');
-var fs = require('fs');
-var app = express();
+var express = require('express')
+var forceSSL = require('express-force-ssl')
+var fs = require('fs')
+var app = express()
 var https = require('https')
+var request = require('request')
+
+const ACCESS_TOKEN = 'e5c0e347f7a9228246e9e64a06402f5aca0f8ed751343216d4946201d818bb4d8146e58198dc2d042e14a'
+
+var userParams
+
+/*
+*	Config
+*/
+
 
 var ssl_options = {
-	key: fs.readFileSync('/etc/ssl/private/ssl-cert-snakeoil.key'),
-	cert: fs.readFileSync('/etc/ssl/certs/ssl-cert-snakeoil.pem'),
-	// ca: fs.readFileSync('./keys/intermediate.crt')
-};
-
+	key: fs.readFileSync('/etc/letsencrypt/live/team3.vkhackathon.ru/privkey.pem'),
+	cert: fs.readFileSync('/etc/letsencrypt/live/team3.vkhackathon.ru/fullchain.pem'),
+}
 
 app.use(express.static(__dirname + '/static')) // allows access to any file in 'public'
 app.set('port', (process.env.PORT || 80)) // set port to 5000
 
 
+/*
+*	Incoming request
+*/
+
 app.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
 	console.log("REQUESTED: " + request)
-	response.end('e6dda052');
-});
+	console.log(request.body)
+	response.end('e6dda052')
+})
 
 app.get('/', function(req, resp) {
-	var params = {
-		api_url: req.param('api_url'),
+	userParams = {
+		api_url: req.paragitm('api_url'),
 		api_settings: req.param('api_settings'),
 		viewer_id: req.param('viewer_id'),
 		group_id: req.param('group_id'),
 		is_app_user: req.param('is_app_user')
 	}
 
-	console.dir(params)
+	console.dir(userParams)
 
 	resp.sendFile(__dirname + '/index.html')
 })
@@ -62,34 +75,22 @@ app.get('/static/*', function(req, resp){
 	}
 })
 
-// app.get('*', function(req, resp){
-// 	const request = req._parsedOriginalUrl.path
-// 	console.log(request)
-// 	// console.log(tagId)
-// 	switch(request){
-// 		case '/':
-// 			resp.sendFile(__dirname + '/index.html')
-// 			break
-// 		case '/static/main.js':
-// 		// console.log("sending main.js")
-// 			resp.sendFile(__dirname + '/static/js/main.js')
-// 			break
-// 		case '/static/main.css':
-// 			// console.log("sending main.css")
-// 			resp.sendFile(__dirname + '/static/css/main.css')
-// 			break
-// 		default:
-// 			resp.sendFile(__dirname + request)
-// 	}
-// })
-
-// app.get('*', function(req, resp)
-
-// if POST comes to this unuque url, we answer with "1db0c94a"
-
-// app.listen(app.get('port'), function() {
-//   console.log('Node app is running on port', app.get('port'));
-// });
+/*
+*	Listen
+*/
 
 var server = https.createServer(ssl_options, app).listen(80, 'team3.vkhackhathon.ru')
 console.log("HTTPS listen at port 80")
+
+/*
+*	Processing
+*/
+
+
+
+// commumityPlaylist = function() {
+// 	var requestParameters = {
+// 		owner_id: userParams.group_id,
+// 	}
+// 	request('https://api.vk.com/method/audio.get?PARAMETERS&access_token=' + ACCESS_TOKEN + '&v=V')
+// }()
