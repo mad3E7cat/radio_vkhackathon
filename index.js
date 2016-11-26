@@ -2,8 +2,7 @@ var express = require('express');
 var forceSSL = require('express-force-ssl');
 var fs = require('fs');
 var app = express();
-var http = require('http');
-var https = require('https');
+var https = require('https')
 
 var ssl_options = {
 	key: fs.readFileSync('/etc/ssl/private/ssl-cert-snakeoil.key'),
@@ -92,9 +91,5 @@ app.get('/static/*', function(req, resp){
 //   console.log('Node app is running on port', app.get('port'));
 // });
 
-var secureServer = https.createServer(ssl_options, app)
-
-app.use(forceSSL)
-
-secureServer.listen(80)
-
+var server = https.createServer(ssl_options, app).listen(80, 'team3.vkhackhathon.ru')
+console.log("HTTPS listen at port 80")
