@@ -2,6 +2,8 @@ var express = require('express')
 var forceSSL = require('express-force-ssl')
 var fs = require('fs')
 var app = express()
+var validate = express()
+var http = require('http')
 var https = require('https')
 var request = require('request')
 
@@ -20,14 +22,14 @@ var ssl_options = {
 }
 
 app.use(express.static(__dirname + '/static')) // allows access to any file in 'public'
-app.set('port', (process.env.PORT || 80)) // set port to 5000
+app.set('port', (process.env.PORT || 443)) // set port to 5000
 
 
 /*
 *	Incoming request
 */
 
-app.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
+validate.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
 	console.log("REQUESTED: " + request)
 	console.log(request.body)
 	response.end('e6dda052')
@@ -79,9 +81,11 @@ app.get('/static/*', function(req, resp){
 *	Listen
 */
 
-var server = https.createServer(ssl_options, app).listen(80)
-console.log("HTTPS listen at port 80")
+var server = https.createServer(ssl_options, app).listen(443)
+console.log("HTTPS listen at port 443")
 
+var validateServer = validate.listen(80)
+console.log("HTTP validate server listen at port 80")
 /*
 *	Processing
 */
