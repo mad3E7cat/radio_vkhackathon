@@ -1,10 +1,17 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
+var evh = require('express-vhost')
 
+app.use(evh.vhost(app.enabled('team3.vkhackathon.ru')))
 app.use(express.static(__dirname + '/static')) // allows access to any file in 'public'
-app.set('port', (process.env.PORT || 5000)) // set port to 5000
+app.set('port', (process.env.PORT || 80)) // set port to 5000
 
+
+app.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
+	console.log("REQUESTED: " + request)
+	response.end('e6dda052');
+});
 
 app.get('*', function(req, resp){
 	const request = req._parsedOriginalUrl.path
@@ -28,10 +35,6 @@ app.get('*', function(req, resp){
 })
 
 // if POST comes to this unuque url, we answer with "1db0c94a"
-app.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
-	console.log("REQUESTED: " + request)
-	response.end('e6dda052');
-});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
