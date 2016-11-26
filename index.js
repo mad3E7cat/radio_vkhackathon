@@ -1,11 +1,19 @@
 var express = require('express');
+var forceSSL = require('express-force-ssl');
 var fs = require('fs');
 var app = express();
-var evh = require('express-vhost')
+var http = require('http');
+var https = require('https');
 
-app.use(evh.vhost(app.enabled('team3.vkhackathon.ru')))
+var ssl_options = {
+	key: fs.readFileSync('/etc/ssl/private/ssl-cert-snakeoil.key'),
+	cert: fs.readFileSync('/etc/ssl/certs/ssl-cert-snakeoil.pem'),
+	// ca: fs.readFileSync('./keys/intermediate.crt')
+};
+
+
 app.use(express.static(__dirname + '/static')) // allows access to any file in 'public'
-app.set('port', (process.env.PORT || 5000)) // set port to 5000
+app.set('port', (process.env.PORT || 80)) // set port to 5000
 
 
 app.post('/DfSgTr568rfghsdgdfh', function(request, response){ 
@@ -80,8 +88,18 @@ app.get('/static/*', function(req, resp){
 
 // if POST comes to this unuque url, we answer with "1db0c94a"
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+// app.listen(app.get('port'), function() {
+//   console.log('Node app is running on port', app.get('port'));
+// });
 
+var server = http.createServer(app)
+
+var secureServer = https.createServer(ssl_options, app)
+
+app.use(express.bodyParser())
+app.use(forceSSL)
+app.use(app.router)
+
+secureServer.listen(443)
+server.listen(80)
 
