@@ -1,1 +1,22 @@
-<!DOCTYPE html><html><head><title>Sample App</title><link href="/static/css/main.b52aa9ee.css" rel="stylesheet"></head><body><div id="root"></div><script type="text/javascript" src="/static/js/main.5731039b.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample App</title>
+	<link href="/static/css/main.css" rel="stylesheet">
+</head>
+	<body>
+		<div id="root">
+		</div>
+		<script type="text/javascript" src="/static/js/main.js"></script>
+		<script src="https://vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+		<script type="text/javascript">
+			 VK.init(function() { 
+				// API initialization succeeded 
+				console.log('OK')
+			}, function() { 
+			// API initialization failed 
+				console.log('FAIL') 
+			}, '5.60');
+		</script>
+	</body>
+</html>
