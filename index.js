@@ -15,8 +15,8 @@ var userParams
 
 
 var ssl_options = {
-	key: fs.readFileSync('/etc/letsencrypt/live/team3.vkhackathon.ru/privkey.pem'),
-	cert: fs.readFileSync('/etc/letsencrypt/live/team3.vkhackathon.ru/fullchain.pem'),
+	key: fs.readFileSync('/etc/letsencrypt/live/privkey.pem'),
+	cert: fs.readFileSync('/etc/letsencrypt/live/fullchain.pem'),
 }
 
 app.use(express.static(__dirname + '/static')) // allows access to any file in 'public'
